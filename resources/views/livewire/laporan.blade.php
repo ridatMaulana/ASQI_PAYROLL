@@ -77,13 +77,29 @@
                                     </tr>
                                     @endforelse
                                 </tbody>
-                                {{-- THE NEW GRAND TOTAL SECTION --}}
                                 @if($rekapData->isNotEmpty())
                                 <tfoot class="table-group-divider">
                                     <tr class="fw-bolder fs-5">
                                         <td colspan="2" class="ps-4">GRAND TOTAL</td>
                                         <td class="text-end text-success">Rp {{ number_format($rekapData->sum('total_pemasukan'), 0, ',', '.') }}</td>
                                         <td class="text-end text-danger">Rp {{ number_format($rekapData->sum('total_pengeluaran'), 0, ',', '.') }}</td>
+                                    </tr>
+                                     @php
+                                        $totalPemasukan = $rekapData->sum('total_pemasukan');
+                                        $totalPengeluaran = $rekapData->sum('total_pengeluaran');
+                                        $labaRugi = $totalPemasukan - $totalPengeluaran;
+                                    @endphp
+                                    <tr class="fw-bolder fs-5">
+                                        <td colspan="3" class="ps-4">
+                                            @if ($labaRugi >= 0)
+                                                Laba Bersih (Untung)
+                                            @else
+                                                Rugi Bersih
+                                            @endif
+                                        </td>
+                                        <td class="text-end @if ($labaRugi >= 0) text-success @else text-danger @endif">
+                                            Rp {{ number_format($labaRugi, 0, ',', '.') }}
+                                        </td>
                                     </tr>
                                 </tfoot>
                                 @endif

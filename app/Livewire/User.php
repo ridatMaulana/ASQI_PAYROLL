@@ -12,13 +12,14 @@ class User extends Component
     use WithPagination; // Gunakan trait pagination
 
     public $pilihanMenu = "lihat";
-    public $tampilkanTrash = false; // <-- State baru untuk mengontrol tampilan trash
+    public $tampilkanTrash = false;
     public $nis;
     public $nama;
     public $email;
     public $password;
     public $peran;
     public $penggunaTerpilih;
+    public $password_confirmation;
 
     public bool $konfirmasiHapusSemua = false;
 
@@ -124,13 +125,12 @@ class User extends Component
 
     public function simpan()
     {
-        // Validasi tidak perlu diubah, sudah benar
         $this->validate([
             'nama' => 'required',
             'nis' => 'required|string|max:255|unique:users,nis',
             'email' => ['required', 'email', 'unique:users,email'],
             'peran' => 'required',
-            // 'password' => 'required|min:6'
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $simpan = new ModelUser();
