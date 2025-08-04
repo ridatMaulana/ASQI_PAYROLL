@@ -47,44 +47,58 @@
                         </h4>
                         <form wire:submit="{{ $pilihanMenu == 'tambah' ? 'simpan' : 'simpanEdit' }}">
                             <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="nama" class="form-label">Nama</label>
-                                    <input id="nama" type="text" class="form-control" wire:model="nama" />
-                                    @error('nama')
-                                    <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nis" class="form-label">{{ __('NIS (Nomor Induk)') }}</label>
-                                    <input id="nis" type="number"
-                                        class="form-control @error('nis') is-invalid @enderror" wire:model="nis"
-                                        required autocomplete="nis">
-                                    @error('nis')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input id="email" type="email" class="form-control" wire:model="email" />
-                                    @error('email')
-                                    <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                    <div class="col-md-6">
+                                        <label for="nama" class="form-label">Nama</label>
+                                        <input id="nama" type="text" class="form-control" wire:model="nama" />
+                                        @error('nama')
+                                        <span class="text-danger small">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="nis" class="form-label">{{ __('NIS (Nomor Induk)') }}</label>
+                                        <input id="nis" type="number"
+                                            class="form-control @error('nis') is-invalid @enderror" wire:model="nis"
+                                            required autocomplete="nis">
+                                        @error('nis')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input id="email" type="email" class="form-control" wire:model="email" />
+                                        @error('email')
+                                        <span class="text-danger small">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                                <div class="col-md-6">
-                                    <label for="peran" class="form-label">Pegawai</label>
-                                    <select id="peran" class="form-select" wire:model='peran'>
-                                        <option value="">Pilih Pegawai</option>
-                                        <option value="karyawan">Karyawan</option>
-                                        <option value="non-karyawan">Non-Karyawan</option>
-                                    </select>
-                                    @error('peran')
-                                    <span class="text-danger small">{{ $message }}</span>
-                                    @enderror
+                                    <div class="col-md-6">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input id="password" type="password" class="form-control" wire:model="password" />
+                                        @error('password')
+                                        <span class="text-danger small">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                                        <input id="password_confirmation" type="password" class="form-control" wire:model="password_confirmation" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="peran" class="form-label">Pegawai</label>
+                                        <select id="peran" class="form-select" wire:model='peran'>
+                                            <option value="">Pilih Pegawai</option>
+                                            <option value="karyawan">Karyawan</option>
+                                            <option value="direktur">Pemilik / Direktur</option>
+                                            <option value="non-karyawan">Non-Karyawan</option>
+                                        </select>
+                                        @error('peran')
+                                        <span class="text-danger small">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
+                            {{-- Tombol Simpan dan Batal --}}
                             <div class="d-flex justify-content-end gap-2 mt-4">
                                 <button type="button" wire:click="batal" class="btn btn-secondary">Batal</button>
                                 <button type="submit" class="btn btn-success">

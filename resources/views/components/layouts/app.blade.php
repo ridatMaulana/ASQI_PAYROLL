@@ -375,7 +375,7 @@
                             <ul class="sidebar-submenu">
                                 <li><a href="{{ route('semua_karyawan') }}" class="sidebar-link sub-link {{ request()->routeIs('semua_karyawan') ? 'active' : '' }}">Daftar Karyawan</a></li>
                                 <li><a href="{{ route('daftar_jabatan') }}" class="sidebar-link sub-link {{ request()->routeIs('daftar_jabatan') ? 'active' : '' }}">Daftar Jabatan</a></li>
-                                <li><a href="{{ route('semua-siswa') }}" class="sidebar-link sub-link {{ request()->routeIs('semua-siswa') ? 'active' : '' }}">Daftar Magang</a></li>
+                                {{-- <li><a href="{{ route('semua-siswa') }}" class="sidebar-link sub-link {{ request()->routeIs('semua-siswa') ? 'active' : '' }}">Daftar Magang</a></li> --}}
                             </ul>
                         </div>
                     </li>
@@ -409,7 +409,7 @@
                 </main>
 
                 <!-- Footer -->
-                <footer class="text-center py-5 px-4">
+                {{-- <footer class="text-center py-5 px-4">
                     <p class="text-dark" style="text-shadow: 0 1px 2px rgba(0,0,0,0.2); font-weight: 500;">
                         © 2025 Turky & Shalwa. All rights reserved.
                     </p>
@@ -418,7 +418,7 @@
                         <a href="#" class="text-dark me-3" style="text-shadow: 0 1px 1px rgba(0,0,0,0.2); font-weight: 500;">Terms of Service</a>
                         <a href="mailto:turkykw50@gmail.com" class="text-dark" style="text-shadow: 0 1px 1px rgba(0,0,0,0.2); font-weight: 500;">Kontak Kami</a>
                     </div>
-                </footer>
+                </footer> --}}
             </div>
         </div>
     </div>

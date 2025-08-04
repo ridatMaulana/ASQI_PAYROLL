@@ -13,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         DB::table('gaji_karyawans')
-            ->whereRaw('LENGTH(periode) = 7') 
+            ->whereRaw("LENGTH(periode::text) = 7")
             ->update([
-                'periode' => DB::raw("CONCAT(periode, '-01')")
+                'periode' => DB::raw("CONCAT(periode::text, '-01')::date")
             ]);
     }
 

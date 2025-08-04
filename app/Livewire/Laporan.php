@@ -22,7 +22,7 @@ class Laporan extends Component
     public function mount()
     {
         // Ambil semua tahun unik dari data transaksi untuk dropdown filter
-        $this->listTahun = TransaksiKas::select(DB::raw('YEAR(tanggal) as tahun'))
+        $this->listTahun = TransaksiKas::select(DB::raw('EXTRACT(YEAR FROM tanggal) as tahun'))
             ->distinct()
             ->orderBy('tahun', 'desc')
             ->pluck('tahun');
@@ -42,12 +42,12 @@ class Laporan extends Component
             // Pilih kolom yang dibutuhkan
             ->select(
                 'kas.nama_pengguna',
-                DB::raw('YEAR(transaksi_kas.tanggal) as tahun'),
-                DB::raw('MONTH(transaksi_kas.tanggal) as bulan'),
+                DB::raw('EXTRACT(YEAR FROM transaksi_kas.tanggal) as tahun'),
+                DB::raw('EXTRACT(MONTH FROM transaksi_kas.tanggal) as bulan'),
                 // Hitung total pemasukan: jumlahkan 'jumlah' HANYA JIKA jenisnya 'masuk'
-                DB::raw("SUM(IF(transaksi_kas.jenis = 'masuk', transaksi_kas.jumlah, 0)) as total_pemasukan"),
+                DB::raw("SUM(CASE WHEN transaksi_kas.jenis = 'masuk' THEN transaksi_kas.jumlah ELSE 0 END) as total_pemasukan"),
                 // Hitung total pengeluaran: jumlahkan 'jumlah' HANYA JIKA jenisnya 'keluar'
-                DB::raw("SUM(IF(transaksi_kas.jenis = 'keluar', transaksi_kas.jumlah, 0)) as total_pengeluaran")
+                DB::raw("SUM(CASE WHEN transaksi_kas.jenis = 'keluar' THEN transaksi_kas.jumlah ELSE 0 END) as total_pengeluaran"),
             )
             // Gabungkan dengan tabel 'kas' untuk mendapatkan nama bank
             ->join('kas', 'transaksi_kas.kas_id', '=', 'kas.id')
