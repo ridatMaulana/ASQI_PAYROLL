@@ -375,7 +375,7 @@
                             <ul class="sidebar-submenu">
                                 <li><a href="{{ route('semua_karyawan') }}" class="sidebar-link sub-link {{ request()->routeIs('semua_karyawan') ? 'active' : '' }}">Daftar Karyawan</a></li>
                                 <li><a href="{{ route('daftar_jabatan') }}" class="sidebar-link sub-link {{ request()->routeIs('daftar_jabatan') ? 'active' : '' }}">Daftar Jabatan</a></li>
-                                {{-- <li><a href="{{ route('semua-siswa') }}" class="sidebar-link sub-link {{ request()->routeIs('semua-siswa') ? 'active' : '' }}">Daftar Magang</a></li> --}}
+                                <li><a href="{{ route('semua-siswa') }}" class="sidebar-link sub-link {{ request()->routeIs('semua-siswa') ? 'active' : '' }}">Daftar Magang</a></li>
                             </ul>
                         </div>
                     </li>
