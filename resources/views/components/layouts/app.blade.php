@@ -345,7 +345,7 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-header">
-                    <img src="{{ asset('/build/assets/asqi.png') }}" alt="Logo ASQI">
+                    <img src="{https://asqi.co.id/assets/asqi/logo-asqi.png" alt="Logo ASQI">
                     <div class="app-name">ASQI</div>
                 </div>
                 <ul class="sidebar-nav">
