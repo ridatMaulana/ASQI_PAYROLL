@@ -22,17 +22,12 @@ COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY composer.json composer.lock ./
-
-RUN mkdir -p bootstrap/cache \
-    && chown -R www-data:www-data bootstrap/cache
+COPY . .
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-COPY . .
-
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/w ww/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 80
 
