@@ -33,7 +33,7 @@ RUN mkdir -p /var/www/html/bootstrap/cache \
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www/html/storage \
-    && chmod -R 775 /var/w ww/html/storage
+    && chmod -R 775 /var/www/html/storage
 
 EXPOSE 80
 
