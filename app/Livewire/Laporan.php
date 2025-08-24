@@ -47,7 +47,7 @@ class Laporan extends Component
                 // Hitung total pemasukan: jumlahkan 'jumlah' HANYA JIKA jenisnya 'masuk'
                 DB::raw("SUM(CASE WHEN transaksi_kas.jenis = 'masuk' THEN transaksi_kas.jumlah ELSE 0 END) as total_pemasukan"),
                 // Hitung total pengeluaran: jumlahkan 'jumlah' HANYA JIKA jenisnya 'keluar'
-                DB::raw("SUM(CASE WHEN transaksi_kas.jenis = 'keluar' THEN transaksi_kas.jumlah ELSE 0 END) as total_pengeluaran"),
+                DB::raw("SUM(CASE WHEN transaksi_kas.jenis = 'keluar' THEN transaksi_kas.jumlah ELSE 0 END) as total_pengeluaran")
             )
             // Gabungkan dengan tabel 'kas' untuk mendapatkan nama bank
             ->join('kas', 'transaksi_kas.kas_id', '=', 'kas.id')

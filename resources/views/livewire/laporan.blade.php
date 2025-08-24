@@ -3,7 +3,6 @@
         <div class="row justify-content-center">
             <div class="col-lg-11">
 
-                {{-- HEADER: I've added the Print button here --}}
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h2 class="mb-0">
@@ -12,18 +11,25 @@
                         <p class="text-muted mb-0">Rekapitulasi total pemasukan dan pengeluaran per akun bank.</p>
                     </div>
                     <div>
-                        {{-- THE NEW PRINT BUTTON --}}
                         <button onclick="window.print()" class="btn btn-success">
                             <i class="bi bi-printer-fill me-1"></i> Cetak Laporan
                         </button>
                     </div>
                 </div>
 
-                {{-- The main card now has a unique ID for printing --}}
                 <div class="card card-custom" id="laporan-cetak">
+
+                    <div class="header-cetak">
+                        <img src="https://asqi.co.id/assets/asqi/logo-asqi.png" alt="Logo PT ASQI" style="width: 100px; height: auto; margin-bottom: 15px;">
+                        <h3 style="margin: 0; font-weight: 700;">PT ASQI</h3>
+                        <p style="margin: 5px 0;">Jl. [Alamat Lengkap], Kota/Kabupaten, Provinsi</p>
+                        <p style="margin: 5px 0;">Telp: (021) XXXXXXX | Email: info@asqi.co.id</p>
+                        <p style="margin: 5px 0;">Website: www.asqi.co.id</p>
+                        <hr style="border-top: 2px solid #000; margin-top: 15px;">
+                    </div>
+
                     <div class="card-body p-4">
 
-                        {{-- FILTER AREA: We will hide this when printing --}}
                         <div class="row g-3 mb-4 p-3 bg-light border rounded" id="area-filter">
                             <div class="col-md-3">
                                 <label for="filterBulan" class="form-label">Bulan</label>
@@ -57,7 +63,6 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        // Month name mapping array
                                         $bulanNama = [1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'];
                                     @endphp
                                     @forelse ($rekapData as $rekap)
@@ -112,7 +117,6 @@
         </div>
     </div>
 
-    {{-- Custom CSS, including styles for printing --}}
     <style>
         .card-custom {
             border: 1px solid #dee2e6;
@@ -125,29 +129,36 @@
             color: #495057;
         }
 
-        /* PRINT STYLES: This will only apply when printing */
+        .header-cetak {
+            display: none;
+        }
+
         @media print {
-            /* Hide everything except the report content */
             body * {
                 visibility: hidden;
             }
             #laporan-cetak, #laporan-cetak * {
                 visibility: visible;
             }
-            /* Position the report at the top of the page */
             #laporan-cetak {
                 position: absolute;
                 left: 0;
                 top: 0;
                 width: 100%;
             }
-            /* Hide unnecessary elements like filters and shadows */
             .card-custom {
                 border: none !important;
                 box-shadow: none !important;
             }
-            #area-filter {
+            #area-filter, .btn-success {
                 display: none;
+            }
+            
+            .header-cetak {
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 20px;
             }
         }
     </style>

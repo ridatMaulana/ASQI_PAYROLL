@@ -31,7 +31,7 @@ class Evaluasi extends Model
         $lastMonths = now()->subMonths(4)->startOfMonth();
 
         $data = Evaluasi::where('tanggal_evaluasi', '>=', $lastMonths)
-            ->selectRaw('users.name as user, MONTH(tanggal_evaluasi) as month, YEAR(tanggal_evaluasi) as year, ROUND(AVG(total_rata_rata), 2) as avg_score')
+            ->selectRaw('users.name as user, MONTH(tanggal_evaluasi) as month, EXTRACT(YEAR FROM tanggal_evaluasi) as year, ROUND(AVG(total_rata_rata), 2) as avg_score')
             ->join('users', 'users.id', '=', 'evaluasis.user_id')
             ->groupBy('users.name', 'month', 'year')
             ->orderBy('year')
