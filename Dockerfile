@@ -1,24 +1,41 @@
-FROM php:8.2-fpm
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
+FROM php:8.2-fpm-alpine
+
+WORKDIR /var/www/html
+
+RUN apk add --no-cache \
+    nginx \
+    supervisor \
     libzip-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
     zip \
     unzip \
-    git \
-    curl
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+    gd \
+    pdo \
+    pdo_mysql \
+    zip \
+    bcmath
 
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_pgsql zip gd
+COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
+COPY docker/supervisor/supervisord.conf /etc/supervisord.conf
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-WORKDIR /var/www/html
-COPY . /var/www/html
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-RUN php artisan key:generate
 
-EXPOSE 9000
+COPY composer.json composer.lock ./
+
+RUN mkdir -p bootstrap/cache \
+    && chown -R www-data:www-data bootstrap/cache
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+COPY . .
+
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+EXPOSE 80
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
