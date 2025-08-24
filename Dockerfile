@@ -4,7 +4,6 @@ WORKDIR /var/www/html
 
 RUN apk add --no-cache \
     nginx \
-    supervisor \
     libzip-dev \
     zip \
     unzip \
@@ -20,7 +19,6 @@ RUN apk add --no-cache \
     bcmath
 
 COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
-COPY docker/supervisor/supervisord.conf /etc/supervisord.conf
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -38,4 +36,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 EXPOSE 80
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["php-fpm"]
