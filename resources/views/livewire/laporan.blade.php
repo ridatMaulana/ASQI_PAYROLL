@@ -22,8 +22,8 @@
                     <div class="header-cetak">
                         <img src="https://asqi.co.id/assets/asqi/logo-asqi.png" alt="Logo PT ASQI" style="width: 100px; height: auto; margin-bottom: 15px;">
                         <h3 style="margin: 0; font-weight: 700;">PT ASQI</h3>
-                        <p style="margin: 5px 0;">Jl. [Alamat Lengkap], Kota/Kabupaten, Provinsi</p>
-                        <p style="margin: 5px 0;">Telp: (021) XXXXXXX | Email: info@asqi.co.id</p>
+                        <p style="margin: 5px 0;">Kp. Sabandar Hilir RT 001 RW 007 Ds. Sabandar Kec. Karangtengah Kab. Cianjur</p>
+                        <p style="margin: 5px 0;">Email: contact@asqi.co.id</p>
                         <p style="margin: 5px 0;">Website: www.asqi.co.id</p>
                         <hr style="border-top: 2px solid #000; margin-top: 15px;">
                     </div>
