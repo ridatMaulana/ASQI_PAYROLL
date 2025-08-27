@@ -345,7 +345,7 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-header">
-                    <img src="https://asqi.co.id/assets/asqi/logo-asqi.png" width="auto" height="auto" alt="Logo ASQI">
+                    <img src="https://asqi.co.id/assets/asqi/logo-asqi.png" style="height: auto; width: 100px;" alt="Logo ASQI">
                     <div class="app-name">ASQI</div>
                 </div>
                 <ul class="sidebar-nav">
